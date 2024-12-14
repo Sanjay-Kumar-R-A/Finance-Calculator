@@ -1,0 +1,1 @@
+#personal finance calcualtor which is simplified for your and income and expenses 

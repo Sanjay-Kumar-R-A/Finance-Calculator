@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="https://ssl.gstatic.com/finance/favicon/finance_496x496.png">
+  <title>Finance Calculator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            "primary-purple": "#4C51BF",
+            "primary-green": "#38A169",
+            "primary-red": "#E53E3E",
+            "primary-gray": "#718096",
+            "light-bg": "#EDF2F7",
+          },
+        },
+        fontFamily: {
+          heading: ["Poppins, sans-serif"],
+          body: ["Inter, sans-serif"],
+        },
+        container: {
+          center: true,
+          padding: "2rem",
+        },
+      },
+    };
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body class="bg-light-bg text-gray-800 font-body">
+  <!-- Income Block -->
+  <div id="income-modal" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 invisible">
+    <div class="bg-white rounded-lg p-6 shadow-xl max-w-md w-full">
+      <h3 class="text-xl font-bold mb-4">Income Statement</h3>
+      <label class="block mb-2">Your Income:</label>
+      <input id="income" type="number" class="w-full p-2 border rounded-lg mb-4" />
+      <label class="block mb-2">Description:</label>
+      <textarea id="description" class="w-full p-2 border rounded-lg h-24 mb-4"></textarea>
+      <div class="flex justify-end space-x-3">
+        <button id="accept" class="bg-primary-green text-white py-2 px-4 rounded-lg hover:bg-green-600">Accept</button>
+        <button id="decline" class="bg-primary-red text-white py-2 px-4 rounded-lg hover:bg-red-600">Decline</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Expenses Block-->
+  <div id="expences-modal" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 invisible">
+    <div class="bg-white rounded-lg p-6 shadow-xl max-w-md w-full">
+      <h3 class="text-xl font-bold mb-4">Expenses Statement</h3>
+      <label class="block mb-2">Your Expenses:</label>
+      <input id="expences" type="number" class="w-full p-2 border rounded-lg mb-4" />
+      <label class="block mb-2">Description:</label>
+      <textarea id="descriptions" class="w-full p-2 border rounded-lg h-24 mb-4"></textarea>
+      <div class="flex justify-end space-x-3">
+        <button id="accepted" class="bg-primary-green text-white py-2 px-4 rounded-lg hover:bg-green-600">Accept</button>
+        <button id="declined" class="bg-primary-red text-white py-2 px-4 rounded-lg hover:bg-red-600">Decline</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container mt-10">
+    <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+
+      <!-- Header -->
+      <header class="bg-primary-purple text-white p-6 flex flex-col sm:flex-row justify-between items-center">
+        <div class="flex items-center space-x-4">
+          <!-- Logo -->
+          <img src="https://ssl.gstatic.com/finance/favicon/finance_496x496.png" alt="Finance Logo" class="h-12 w-12 object-contain">
+          <div class="flex flex-col items-center sm:items-start">
+            <p class="text-lg">Total Net Worth:</p>
+            <div id="total-value" class="text-3xl font-bold text-green-300">0</div>
+          </div>
+        </div>
+        <div class="mt-4 sm:mt-0">
+          <label class="inline-flex items-center space-x-2">
+            <input type="radio" id="all" name="radiobutton" value="all" class="text-blue-600">
+            <span>All</span>
+          </label>
+          <label class="inline-flex items-center space-x-2">
+            <input type="radio" id="income-redo" name="radiobutton" value="income" class="text-blue-600">
+            <span>Income</span>
+          </label>
+          <label class="inline-flex items-center space-x-2">
+            <input type="radio" id="expen-redo" name="radiobutton" value="expences" class="text-blue-600">
+            <span>Expenses</span>
+          </label>
+        </div>
+      </header>
+
+      <!-- Body -->
+      <div class="p-6">
+        <div class="flex justify-between items-center mb-4">
+          <div class="flex items-center space-x-2">
+            <p class="font-bold text-xl">Add Income:</p>
+            <i id="income-plus" class="text-4xl fa-solid fa-square-plus text-primary-green cursor-pointer"></i>
+          </div>
+          <p class="total-income bg-gray-200 text-green-700 py-2 px-4 rounded-lg">0</p>
+        </div>
+
+        <div class="flex justify-between items-center">
+          <div class="flex items-center space-x-2">
+            <p class="font-bold text-xl">Add Expenses:</p>
+            <i id="expences-plus" class="text-4xl fa-solid fa-square-plus text-primary-red cursor-pointer"></i>
+          </div>
+          <p class="total-expences bg-gray-200 text-red-700 py-2 px-4 rounded-lg">0</p>
+        </div>
+      </div>
+
+      <!-- List -->
+      <div id="list" class="p-6 bg-gray-50 border-t border-gray-300 h-64 overflow-y-auto">
+        <p class="text-center text-primary-gray">No items added yet.</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
